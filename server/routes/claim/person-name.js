@@ -1,10 +1,10 @@
-const sessionHandler = require('../../services/session-handler')
-const schema = require('../../schemas/claim/person-name')
 const ViewModel = require('../../models/claim/person-name')
+const schema = require('../../schemas/claim/person-name')
+const sessionHandler = require('../../services/session-handler')
 
 module.exports = [{
   method: 'GET',
-  path: 'claim/person-name',
+  path: '/claim/person-name',
   options: {
     handler: (request, h) => {
       const claim = sessionHandler.get(request, 'claim')
@@ -14,7 +14,7 @@ module.exports = [{
 },
 {
   method: 'POST',
-  path: 'claim/person-name',
+  path: '/claim/person-name',
   options: {
     validate: { payload: { personName: schema },
       failAction: async (request, h, error) => {
@@ -23,7 +23,7 @@ module.exports = [{
     },
     handler: async (request, h) => {
       sessionHandler.update(request, 'claim', request.payload)
-      return h.redirect('./email')
+      return h.redirect('./person-email')
     }
   }
 }]
