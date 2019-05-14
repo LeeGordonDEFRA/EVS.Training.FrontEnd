@@ -1,6 +1,7 @@
 {% extends "template.njk" %}
 
 {% block head %}
+
   <!--[if !IE 8]><!-->
     <link href="{{ assetPath }}/stylesheets/application.css" rel="stylesheet" />
   <!--<![endif]-->
@@ -21,7 +22,7 @@
   {{ govukHeader({
     homepageUrl: "#",
     containerClasses: "govuk-width-container",
-    serviceName: serviceName,
+    serviceName: "Electric Vehicle Services",
     serviceUrl: "#"
   }) }}
 {% endblock %}

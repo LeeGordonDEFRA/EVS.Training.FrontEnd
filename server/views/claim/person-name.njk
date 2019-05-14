@@ -1,0 +1,38 @@
+{% extends 'layout.njk' %}
+
+{% from "button/macro.njk" import govukButton %}
+{% from "error-summary/macro.njk" import govukErrorSummary %}
+{% from "input/macro.njk" import govukInput %}
+{% from "_breadcrumbs.njk" import breadcrumbs %}
+
+{% block beforeContent %}
+
+{{ breadcrumbs("Person Name")}}
+
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-body">
+    <form method="POST" action="/personname">
+      <h1 class="govuk-heading-xl">Create a person record</h1>
+
+      {% if model.errors.length !== 0 %}
+
+        {{ govukErrorSummary({
+          titleText: "There is a problem",
+          errorList: model.errors
+        }) }}
+
+      {% endif %}
+
+      <p class="govuk-body-l">What is your name?</p>
+      {{ govukInput(model.firstName) }}
+      {{ govukInput(model.lastName) }}
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+    </form>
+  </div>
+
+{% endblock %}

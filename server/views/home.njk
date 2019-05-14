@@ -1,28 +1,45 @@
 {% extends 'layout.njk' %}
 
-{% from "date-input/macro.njk" import govukDateInput %}
+{% from "breadcrumbs/macro.njk" import govukBreadcrumbs %}
+{% from "button/macro.njk" import govukButton %}
+
+{% block beforeContent %}
+  {{ govukBreadcrumbs({
+    items: [
+      {
+        text: "Home",
+        href: "#"
+      }]
+      }) }}
+{% endblock %}
 
 {% block content %}
-  <div class="govuk-body">
-    {{
-      govukDateInput({
-        id: "dob",
-        namePrefix: "dob",
-        fieldset: {
-          legend: {
-            text: "What is your date of birth?",
-            isPageHeading: true,
-            classes: "govuk-fieldset__legend--xl"
-          }
-        },
-        hint: {
-          text: "For example, 31 3 1980"
-        }
-      })
-    }}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-xl">Electric Vehicle Service</h1>
 
+      <p class="govuk-body">Use this service to:</p>
 
-    <p>{{title}}</p>
-    <p>{{message}}</p>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>submit a claim for financial assistance to install electronic vehicle charging ports</li>
+        <li><a class="govuk-link" href="#">check status of your claim</a></li>
+       </ul>
+
+      <p class="govuk-body">Registering takes around 5 minutes.</p>
+
+      {{ govukButton({
+        text: "Start new Claim",
+        href: "/claim/person-name",
+        classes: "govuk-button--start govuk-!-margin-top-2 govuk-!-margin-bottom-8"
+      }) }}
+
+      <h2 class="govuk-heading-m">Before you start</h2>
+
+      <p class="govuk-body">You can also <a class="govuk-link" href="#">register by post</a>.</p>
+
+      <p class="govuk-body">The online service is also available in <a class="govuk-link" href="#">Welsh (Cymraeg)</a>.</p>
+
+      <p class="govuk-body">You cannot register for this service if you’re in the UK illegally.</p>
+    </div>
   </div>
 {% endblock %}

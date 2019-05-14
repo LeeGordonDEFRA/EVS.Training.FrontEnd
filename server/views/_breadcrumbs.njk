@@ -1,0 +1,19 @@
+{% from "breadcrumbs/macro.njk" import govukBreadcrumbs %}
+
+{% macro breadcrumbs(params) %}
+  {{ govukBreadcrumbs({
+    items: [
+      {
+        text: "Start",
+        href: "#"
+      },
+      {
+        text: "Register",
+        href: "#"
+      },
+      {
+        text: params
+      }
+    ]
+  }) }}
+{% endmacro %}
